@@ -29,18 +29,44 @@ def window(x, y, frame_color, outside_color):
          )
 
 
-def cat(size, color, eye_color):
-    ovl(35, 470, 60, 520, (0, 0, 0), color)  # лапа слева
-    ovl(310, 400, 550, 440, (0, 0, 0), color)  # нога
-    ovl(80, 395, 350, 520, (0, 0, 0), color)  # тело
-    circ(80, 450, 55, (0, 0, 0), color)  # голова
-    circ(340, 500, 40, (0, 0, 0), color)  # ляжка
-    ovl(80, 495, 150, 530, (0, 0, 0), color)  # лапа справа
-    ovl(370, 500, 390, 560, (0, 0, 0), color)  # хвост
-    circ(55, 440, 15, (0, 0, 0), eye_color)  # глаз
-    circ(105, 440, 15, (0, 0, 0), eye_color)  # глаз
-    ovl(60, 430, 65, 450, (0, 0, 0), (0, 0, 0))  # зрачек
-    ovl(110, 430, 115, 450, (0, 0, 0), (0, 0, 0))  # зрачек
+def cat(x, y, r, pen_color, color, eye_color):
+    ovl(x / 2, y,
+        x * 3 / 4, y + y / 6,
+        pen_color, color
+        )  # лапа слева
+    ovl(x * 3, y - y / 12,
+        x * 6, y,
+        pen_color, color
+        )  # хвост
+    ovl(x, y - y / 9,
+        x * 4, y + y / 6,
+        pen_color, color
+        )  # тело
+    circ(x, y, r,
+         pen_color, color
+         )  # голова (80, 450, 55)
+    circ(x * 3.6, y + y / 9, r / 1.375,
+         pen_color, color
+         )  # ляжка
+    ovl(x, y + y / 9,
+        x * 2, y + y / 6,
+        pen_color, color
+        )  # лапа справа
+    ovl(x * 3.85, y + y / 9,
+        x * 4.1, y + y * 2 / 9,
+        pen_color, color)  # нога
+    circ(x / 1.4, y - y / 45, r / 3.67,
+         pen_color, eye_color
+         )  # глаз
+    circ(x * 1.32, y - y / 45, r / 3.67,
+         pen_color, eye_color
+         )  # глаз
+    ovl(x * 3 / 4, y - y * 2 / 45,
+        x / 1.23, y,
+        pen_color, pen_color)  # зрачек
+    ovl(x * 1.375, y - y * 2 / 45,
+        x * 1.44, y,
+        pen_color, pen_color)  # зрачек
     dy = 10
     penColor(0, 0, 0)
     for i in range(3):  # усы
@@ -87,10 +113,10 @@ def rect(x1, y1, x2, y2, color):
     rectangle(x1, y1, x2, y2)
 
 
-def circ(x, y, R, pen_color, brush_color):
+def circ(x, y, r, pen_color, brush_color):
     penColor(pen_color)
     brushColor(brush_color)
-    circle(x, y, R)
+    circle(x, y, r)
 
 
 def ovl(x1, y1, x2, y2, pen_color, brush_color):
@@ -98,11 +124,11 @@ def ovl(x1, y1, x2, y2, pen_color, brush_color):
     brushColor(brush_color)
     oval(x1, y1, x2, y2)
 
-
+size = 80
 rect(0, 0, width, width / 5 * 3, (200, 200, 0))
 rect(0, width / 5 * 3, width, height, (120, 120, 0))
 window(width / 2, 0, (50, 50, 100), (0, 0, 0))
 threadball(310, 650, 40, (0, 0, 0), (150, 150, 150))
-cat(1, (210, 120, 100), (100, 190, 100))
+cat(size, 5.625 * size, 0.69 * size, (0, 0, 0), (210, 120, 100), (100, 190, 100))
 
 run()
