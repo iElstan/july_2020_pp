@@ -1,7 +1,7 @@
 from graph import *
 
-width = 500
-height = 750
+width = 1000
+height = 1000
 windowSize(width, height)
 canvasSize(width, height)
 
@@ -16,7 +16,7 @@ def window(x, y, frame_color, outside_color):
          outside_color
          )
     rect(x + width / 25, y + height / 7.5,
-         x + width / 4 - width / 100, 280,
+         x + width / 4 - width / 100, y + height / 2.5 - height * 2 / 75,
          outside_color
          )
     rect(x + width / 4 + width / 100, y + height / 25,
@@ -30,56 +30,70 @@ def window(x, y, frame_color, outside_color):
 
 
 def cat(x, y, r, pen_color, color, eye_color):
-    ovl(x / 2, y,
-        x * 3 / 4, y + y / 6,
+    ovl(x - r / 2, y,
+        x, y + abs(r) * 4 / 3,
         pen_color, color
         )  # лапа слева
-    ovl(x * 3, y - y / 12,
-        x * 6, y,
+    ovl(x + r * 4, y - abs(r),
+        x + r * 8, y,
         pen_color, color
         )  # хвост
-    ovl(x, y - y / 9,
-        x * 4, y + y / 6,
+    ovl(x, y - abs(r) * 4 / 3,
+        x + r * 5, y + abs(r) * 4 / 3,
         pen_color, color
         )  # тело
     circ(x, y, r,
          pen_color, color
          )  # голова (80, 450, 55)
-    circ(x * 3.6, y + y / 9, r / 1.375,
+    circ(x + r * 4.3, y + abs(r) * 3 / 4, r * 3 / 4,
          pen_color, color
          )  # ляжка
-    ovl(x, y + y / 9,
-        x * 2, y + y / 6,
+    ovl(x + r / 3, y + abs(r) * 3 / 4,
+        x + r * 3 / 2, y + abs(r) * 4 / 3,
         pen_color, color
         )  # лапа справа
-    ovl(x * 3.85, y + y / 9,
-        x * 4.1, y + y * 2 / 9,
+    ovl(x + r * 4.8, y + abs(r),
+        x + r * 5.1, y + abs(r) * 2,
         pen_color, color)  # нога
-    circ(x / 1.4, y - y / 45, r / 3.67,
+    circ(x - r / 2.5, y, r / 3.67,
          pen_color, eye_color
          )  # глаз
-    circ(x * 1.32, y - y / 45, r / 3.67,
+    circ(x + r / 2.5, y, r / 3.67,
          pen_color, eye_color
          )  # глаз
-    ovl(x * 3 / 4, y - y * 2 / 45,
-        x / 1.23, y,
-        pen_color, pen_color)  # зрачек
-    ovl(x * 1.375, y - y * 2 / 45,
-        x * 1.44, y,
-        pen_color, pen_color)  # зрачек
-    dy = 10
+    ovl(x - r / 2.7, y - abs(r) / 5,
+        x - r / 3.3, y + abs(r) / 5,
+        pen_color, pen_color
+        )  # зрачек
+    ovl(x + r / 2, y - abs(r) / 5,
+        x + r / 2.3, y + abs(r) / 5,
+        pen_color, pen_color
+        )  # зрачек
+    dy = abs(r) / 5
     penColor(0, 0, 0)
     for i in range(3):  # усы
-        moveTo(70, 480)
-        lineTo(15, 500 - dy)
-        moveTo(90, 480)
-        lineTo(145, 500 - dy)
-        dy += 10
+        moveTo(x - r / 6, y + abs(r) / 2)
+        lineTo(x - r * 3 / 2, y + abs(r) - dy)
+        moveTo(x + r / 6, y + abs(r) / 2)
+        lineTo(x + r * 3 / 2, y + abs(r) - dy)
+        dy += abs(r) / 5
     brushColor(210, 180, 180)
-    polygon([(100, 410), (120, 420), (130, 380)])  # уши
-    polygon([(60, 410), (40, 420), (30, 380)])  # уши
-    polygon([(75, 460), (85, 460), (80, 467)])  # нос
-    line(80, 467, 80, 485)
+    polygon([(x + r * 4 / 5, y - abs(r) / 2),
+             (x + r / 2, y - abs(r) * 3 / 5),
+             (x + r, y - abs(r) * 1.2)
+             ]
+            )  # уши
+    polygon([(x - r * 4 / 5, y - abs(r) / 2),
+             (x - r / 2, y - abs(r) * 3 / 5),
+             (x - r, y - abs(r) * 1.2)
+             ]
+            )  # уши
+    polygon([(x - r / 10, y + abs(r) / 2.2),
+             (x + r / 10, y + abs(r) / 2.2),
+             (x, y + abs(r) / 1.8)
+             ]
+            )  # нос
+    line(x, y + abs(r) / 1.8, x, y + abs(r) * 3 / 4)
 
 
 def threadball(x, y, r, pen_color, brush_color):
@@ -124,11 +138,15 @@ def ovl(x1, y1, x2, y2, pen_color, brush_color):
     brushColor(brush_color)
     oval(x1, y1, x2, y2)
 
-size = 80
+
 rect(0, 0, width, width / 5 * 3, (200, 200, 0))
 rect(0, width / 5 * 3, width, height, (120, 120, 0))
 window(width / 2, 0, (50, 50, 100), (0, 0, 0))
 threadball(310, 650, 40, (0, 0, 0), (150, 150, 150))
-cat(size, 5.625 * size, 0.69 * size, (0, 0, 0), (210, 120, 100), (100, 190, 100))
-
+threadball(600, 400, 10, (0, 0, 0), (150, 150, 150))
+threadball(100, 320, 70, (0, 0, 0), (150, 150, 150))
+cat(80, 450, 50, (0, 0, 0), (210, 120, 100), (100, 190, 100))
+cat(300, 500, -30, (0, 0, 0), (210, 120, 100), (100, 190, 100))
+cat(700, 700, -10, (0, 0, 0), (20, 40, 40), (100, 100, 240))
+cat(500, 600, 60, (0, 0, 0), (20, 40, 40), (100, 100, 240))
 run()
