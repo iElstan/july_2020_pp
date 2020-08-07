@@ -516,6 +516,8 @@ def run():
         runLoopFunc(timerCall)()
     _win.mainloop()
 
+def update():
+    update()
 
 def close():
     _win.destroy()
