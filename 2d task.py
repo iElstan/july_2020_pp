@@ -155,12 +155,14 @@ init_y = 850
 dx = 0
 dy = 0
 
+coords(c)
+
 for i in range(100):
-    penColor(120, 120, 0)
-    brushColor(120, 120, 0)
-    rectangle(100 + dx + 20, 800, init_x - dx - 20, 900)
+    # penColor(120, 120, 0)
+    # brushColor(120, 120, 0)
+    # rectangle(100 + dx + 20, 800, init_x - dx - 20, 900)
     dx += 10
-    cat(init_x + dx, init_y + dy, -10, (0, 0, 0), (20, 40, 40), (100, 100, 240))
+    moveObjectTo(c, init_x + dx, init_y + dy)
     update()
     time.sleep(0.1)
 
