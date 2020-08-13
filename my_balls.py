@@ -1,6 +1,7 @@
 from tkinter import *
 from random import randrange as rnd, choice
 
+name = input("Введите имя:\n")
 root = Tk()
 root.geometry("800x600")
 
@@ -25,18 +26,16 @@ score = 0
 
 
 def click(event):
-    """Функциия регистрации клика левой кнопкой мыши"""
+    """Функциия регистрации клика левой кнопкой мыши, плюс попадание по шарику и счет"""
     global score
     print(event.x, event.y, x, y, R)
     if x + R > event.x > x - R and y + R > event.y > y - R:
-        print('I got it!')
         score += 1
+        lab['text'] = (name + ' - Score = ' + str(score))
 
-
-lab = Label(root, text=score, anchor=E)
-lab.pack()
 
 new_ball()
 canv.bind('<Button-1>', click)
-
+lab = Label(root, text=(name + ' - Score = ' + str(score)), font="Arial 14")
+lab.pack()
 root.mainloop()

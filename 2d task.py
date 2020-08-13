@@ -148,21 +148,19 @@ threadball(600, 400, 10, (0, 0, 0), (150, 150, 150))
 threadball(100, 320, -70, (0, 0, 0), (150, 150, 150))
 cat(80, 450, 50, (0, 0, 0), (210, 120, 100), (100, 190, 100))
 cat(300, 500, -30, (0, 0, 0), (210, 120, 100), (100, 190, 100))
-c = cat(500, 600, 70, (0, 0, 0), (20, 40, 40), (100, 100, 240))
+cat(500, 600, 70, (0, 0, 0), (20, 40, 40), (100, 100, 240))
 
 init_x = 100
 init_y = 850
 dx = 0
 dy = 0
 
-coords(c)
-
-for i in range(100):
-    # penColor(120, 120, 0)
-    # brushColor(120, 120, 0)
-    # rectangle(100 + dx + 20, 800, init_x - dx - 20, 900)
-    dx += 10
-    moveObjectTo(c, init_x + dx, init_y + dy)
+for i in range(10):
+    penColor(120, 120, 0)
+    brushColor(120, 120, 0)
+    rectangle(200 + dx + 70, 800, init_x - dx - 70, 900)
+    dx += 100
+    cat(init_x + dx, init_y + dy, -10, (0, 0, 0), (20, 40, 40), (100, 100, 240))
     update()
     time.sleep(0.1)
 
