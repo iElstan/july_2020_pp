@@ -21,11 +21,22 @@ def new_ball():
     root.after(1000, new_ball)
 
 
-def click(event):
-    """Функциия регистрации клика лефой кнопкой мыши"""
-    print(x, y, R)
+score = 0
 
+
+def click(event):
+    """Функциия регистрации клика левой кнопкой мыши"""
+    global score
+    print(event.x, event.y, x, y, R)
+    if x + R > event.x > x - R and y + R > event.y > y - R:
+        print('I got it!')
+        score += 1
+
+
+lab = Label(root, text=score, anchor=E)
+lab.pack()
 
 new_ball()
 canv.bind('<Button-1>', click)
+
 root.mainloop()
