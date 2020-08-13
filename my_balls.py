@@ -1,14 +1,18 @@
 from tkinter import *
 from random import randrange as rnd, choice
 
-name = input("Введите имя:\n")
+name = "TestVasia"  # input("Введите имя:\n")
 root = Tk()
 root.geometry("800x600")
 
-canv = Canvas(root, bg='lightblue')
+canv = Canvas(root, bg='lightgreen')
 canv.pack(fill=BOTH, expand=1)
 
 colors = ['red', 'blue', 'green', 'orange', 'yellow', 'black']
+score = 0
+
+lab = Label(root, text=(name + ' - Score = ' + str(score)), font="Arial 14")
+lab.pack()
 
 
 def new_ball():
@@ -22,9 +26,6 @@ def new_ball():
     root.after(1000, new_ball)
 
 
-score = 0
-
-
 def click(event):
     """Функциия регистрации клика левой кнопкой мыши, плюс попадание по шарику и счет"""
     global score
@@ -35,7 +36,6 @@ def click(event):
 
 
 new_ball()
+
 canv.bind('<Button-1>', click)
-lab = Label(root, text=(name + ' - Score = ' + str(score)), font="Arial 14")
-lab.pack()
 root.mainloop()
